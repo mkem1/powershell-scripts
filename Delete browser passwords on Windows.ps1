@@ -1,3 +1,5 @@
+Start-Transcript -Path "C:\ProgramData\Microsoft\IntuneManagementExtension\Logs\RemoveBrowserPasswords.log" -Append
+
 #Requires -RunAsAdministrator
 
 # Admin variables
@@ -109,3 +111,4 @@ foreach ($browser in $Browsers) {
         Remove-PasswordFile -FilePath $passwordFile
     }
 }
+Stop-Transcript
