@@ -1,3 +1,5 @@
+Start-Transcript -Path 'C:\Scripts\Purge_logs_files_by_zipping.log' -Append
+
 $SourceFolder = "C:\Program Files\DialogMaster\Log"
 $ZipFolder = "C:\Program Files\DialogMaster\Log"
 $DaysOld = 7
@@ -34,3 +36,4 @@ if ($OldFiles) {
 } else {
     Write-Host "No files older than $DaysOld days found."
 }
+Stop-Transcript

@@ -1,3 +1,5 @@
+Start-Transcript -Path 'C:\Scripts\Purge_logs_folders_by_zipping.log' -Append
+
 $SourceFolder = "C:\Temp\Meantest"
 $ZipFolder    = "C:\Temp\Meantest"
 $DaysOld      = 90
@@ -30,3 +32,4 @@ if ($OldFolders) {
 } else {
     Write-Host "No folders older than $DaysOld days found."
 }
+Stop-Transcript
