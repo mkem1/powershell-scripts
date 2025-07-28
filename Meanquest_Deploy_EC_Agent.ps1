@@ -7,7 +7,7 @@ param(
 $errorActionPreference = "Stop"
 
 # Définir le chemin du fichier de log
-$logFilePath = "C:\tmp\ManageEngine_InstallLog.txt"
+$logFilePath = "C:\Windows\Temp\ManageEngine_InstallLog.txt"
 
 function Write-Log {
     param([string]$message)

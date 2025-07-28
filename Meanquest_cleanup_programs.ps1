@@ -6,13 +6,17 @@ $desktop = "C:\Users\$user\Desktop"
  
 ####################################
  
-# Uninstall NinjaRMM
-"C:\Program Files (x86)\SITENAME-*\uninstall.exe --mode unattended"
+# Uninstall NinjaRMM (other script provided)
  
-# Uninstall TeamViewer (via cmd)
+# Uninstall TeamViewer (via cmd) !!!! TRY WITH NINJA SCRIPT
 cmd.exe /c "cd "C:\Program Files\TeamViewer\uninstall.exe /S"" -Force -ErrorAction SilentlyContinue
 cmd.exe /c "cd "C:\Program Files (x86)\TeamViewer\uninstall.exe /S"" -Force -ErrorAction SilentlyContinue
 
+# Uninstall FortiClient VPN 
+
+$AppName = "FortiClient VPN"
+$App = Get-WmiObject Win32_Product | Where-Object { $_.Name -eq $AppName } -Force -ErrorAction SilentlyContinue
+msiexec /uninstall $App.IdentifyingNumber /norestart /quiet -Force -ErrorAction SilentlyContinue
  
 # DL Meanquest TeamViewer QS
 Invoke-WebRequest -Uri "https://get.teamviewer.com/6452gdr" -OutFile "C:\tmp\TeamViewerQS.exe"
@@ -61,3 +65,8 @@ Write-Host "Error uninstalling $($appName): $($_.Exception.Message)"
 else {
 Write-Host "$appName is not installed"
 }
+
+# Attempt #3 - via CMD
+
+cmd.exe /c "wmic product where name="3CXPhone for Windows" call uninstall /nointeractive" -Force -ErrorAction SilentlyContinue
+Remove-Item C:\ProgramData\3CXPhone for Windows -Recurse
