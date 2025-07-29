@@ -8,15 +8,17 @@ $desktop = "C:\Users\$user\Desktop"
  
 # Uninstall NinjaRMM (other script provided)
  
-# Uninstall TeamViewer (via cmd) !!!! TRY WITH NINJA SCRIPT
+# Uninstall TeamViewer (via cmd)
 cmd.exe /c "cd "C:\Program Files\TeamViewer\uninstall.exe /S"" -Force -ErrorAction SilentlyContinue
 cmd.exe /c "cd "C:\Program Files (x86)\TeamViewer\uninstall.exe /S"" -Force -ErrorAction SilentlyContinue
 
-# Uninstall FortiClient VPN 
+# Uninstall ultra VNC
+Start-Process -FilePath "C:\Program Files\uvnc bvba\UltraVNC\unins000.exe" -ArgumentList "/VERYSILENT", "/NORESTART" -Wait -Force -ErrorAction SilentlyContinue
 
+# Uninstall FortiClient VPN 
 $AppName = "FortiClient VPN"
-$App = Get-WmiObject Win32_Product | Where-Object { $_.Name -eq $AppName } -Force -ErrorAction SilentlyContinue
-msiexec /uninstall $App.IdentifyingNumber /norestart /quiet -Force -ErrorAction SilentlyContinue
+$App = Get-WmiObject Win32_Product | Where-Object { $_.Name -eq $AppName } -Wait -Force -ErrorAction SilentlyContinue
+msiexec /uninstall $App.IdentifyingNumber /norestart /quiet -Wait -Force -ErrorAction SilentlyContinue
  
 # DL Meanquest TeamViewer QS
 Invoke-WebRequest -Uri "https://get.teamviewer.com/6452gdr" -OutFile "C:\tmp\TeamViewerQS.exe"
